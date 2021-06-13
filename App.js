@@ -6,107 +6,135 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+ import React, {useEffect, useState} from 'react';
+ import {
+   Dimensions,
+   StyleSheet,
+   Text,
+   View,
+   Image,
+   ScrollView,
+ } from 'react-native';
+ import moment from 'moment';
+ import Item from './Item';
+ 
+ const App = () => {
+   const [time, setTime] = useState('');
+   let timer = null;
+ 
+   useEffect(() => {
+     timer = setInterval(() => {
+       setTime(moment().format('YYYY-MM-DD HH:mm:ss'));
+     }, 1000);
+     return () => {
+       timer && clearInterval(timer);
+     };
+   }, []);
+ 
+   return (
+     <View style={styles.all}>
+       <View style={{height: 44}} />
+       <Image
+         source={require('./images/wechat_tabbar.jpg')}
+         style={styles.wechatHeader}
+       />
+       <ScrollView style={{flex: 1}}>
+         <View style={styles.viewCityTime}>
+           <View style={styles.viewCityMore}>
+             <Text style={styles.fontCityTime}>深圳</Text>
+             <View style={{width: 4}} />
+             <Image
+               style={styles.imageCityMore}
+               source={require('./images/city_more.jpg')}
+             />
+           </View>
+           <View style={styles.viewTimeParent}>
+             <Text style={styles.fontCityTime}>{time}</Text>
+           </View>
+         </View>
+         <View style={{height: 12}} />
+         <Image
+           source={require('./images/wechat_code.jpg')}
+           style={styles.wechatCode}
+         />
+         <View style={{height: 8}} />
+         <View style={styles.viewItems}>
+           <Item
+             image={require('./images/item_ok.jpg')}
+             fontColor="#3db36e"
+             title="核酸检测"
+             message="阴性"
+             timeOrArea="2021-06-02 10:00"
+           />
+           <Item
+             image={require('./images/item_information.jpg')}
+             fontColor="grey"
+             title="新冠疫苗"
+             message="暂未查询到数据"
+             timeOrArea="由接种点上报"
+           />
+         </View>
+         <Image
+           source={require('./images/wechat_footer.jpg')}
+           style={styles.wechatFooter}
+         />
+       </ScrollView>
+     </View>
+   );
+ };
+ 
+ const styles = StyleSheet.create({
+   viewItems: {
+     flexDirection: 'row',
+     alignItems: 'center',
+     justifyContent: 'space-between',
+     display: 'flex',
+     paddingHorizontal: 20,
+   },
+   viewCityMore: {
+     flexDirection: 'row',
+     alignItems: 'center',
+     display: 'flex',
+   },
+   imageCityMore: {
+     height: 16,
+     width: 16,
+   },
+   viewCityTime: {
+     flexDirection: 'row',
+     alignItems: 'center',
+     display: 'flex',
+     justifyContent: 'space-between',
+     paddingHorizontal: 20,
+   },
+   viewTimeParent: {
+     backgroundColor: '#3c7dd3',
+     borderRadius: 20,
+     paddingVertical: 8,
+     flexDirection: 'row',
+     justifyContent: 'center',
+     width: Dimensions.get('screen').width * 0.68,
+   },
+   all: {
+     flex: 1,
+     backgroundColor: '#4594f8',
+   },
+   wechatHeader: {
+     height: 55,
+     width: Dimensions.get('screen').width,
+   },
+   wechatFooter: {
+     height: 2322 / 2,
+     width: Dimensions.get('screen').width,
+   },
+   wechatCode: {
+     height: 323,
+     width: Dimensions.get('screen').width,
+   },
+   fontCityTime: {
+     fontSize: 24,
+     color: 'white',
+     fontWeight: '500',
+   },
+ });
+ export default App; 

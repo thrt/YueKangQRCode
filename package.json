@@ -10,8 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "moment": "^2.29.1",
     "react": "17.0.1",
-    "react-native": "0.64.2"
+    "react-native": "0.64.2",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
