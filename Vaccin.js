@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+// 疫苗接种
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -8,27 +9,31 @@ import {
   ScrollView,
 } from 'react-native';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
-const App = props => {
+const Vaccin = props => {
   return (
     <View style={styles.all}>
       <View style={styles.viewTitle}>
-        <Image source={props.image} style={styles.imageImage} />
-        <View style={{width: 4}} />
-        <Text style={styles.textTitle}>{props.title}</Text>
-        <View style={{width: 4}} />
+        <Image source={require('./images/item_information.jpg')} style={styles.imageImage} />
+        <View style={{ width: 4 }} />
+        <Text style={styles.textTitle}>新冠疫苗</Text>
+        <View style={{ width: 4 }} />
         <Image
-          source={require('./images/item_more.jpg')}
+          source={require('./images/item_more.png')}
           style={styles.imageMore}
         />
       </View>
-      <Text style={[styles.textMessage, {color: props.fontColor}]}>
+      <Text style={[styles.textMessage, { color: props.fontColor }]}>
         {props.message}
       </Text>
-      <Text style={styles.textTimeOrArea}>{props.timeOrArea}</Text>
+      <Text style={styles.textTimeOrArea}>由接种点上报</Text>
     </View>
   );
 };
+
+Vaccin.propTypes = {
+}
 
 const styles = StyleSheet.create({
   all: {
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 8,
+    paddingVertical: 16,
     display: 'flex',
   },
   textTitle: {
@@ -56,8 +61,9 @@ const styles = StyleSheet.create({
     width: 24,
   },
   imageMore: {
-    height: 18,
-    width: 18,
+    height: 14,
+    width: 14,
+    tintColor: 'grey'
   },
   textMessage: {
     fontSize: 22,
@@ -69,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Vaccin;

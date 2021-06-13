@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "moment": "^2.29.1",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-picker": "^4.3.7",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0"
