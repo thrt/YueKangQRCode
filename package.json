@@ -1,5 +1,5 @@
 {
-  "name": "Yuekangma",
+  "name": "YueKangQRCode",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,16 +10,15 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "moment": "^2.29.1",
     "react": "17.0.1",
     "react-native": "0.64.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/runtime": "^7.14.0",
+    "@babel/core": "^7.14.5",
+    "@babel/runtime": "^7.14.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^27.0.2",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "jest": "^27.0.4",
     "metro-react-native-babel-preset": "^0.66.0",
     "react-test-renderer": "17.0.1"
