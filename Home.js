@@ -14,6 +14,7 @@ import {
   View,
   Image,
   ScrollView,
+  Alert,
 } from 'react-native';
 import moment from 'moment';
 import Vaccin from './Vaccin';
@@ -80,11 +81,17 @@ const Home = (props) => {
               Picker.show();
             }}
             onItemPress={() => {
-              props.navigation.navigate('History')
+              Alert.alert('提示', '网络错误，请稍后重试', [{ text: '确定', onPress: () => { } }])
             }}
           />
           <Vaccin
             message="暂未查询到数据"
+            onItemPress={() => {
+              Alert.alert('提示', '未查询到相关记录', [{
+                text: '确定', onPress: () => {
+                }
+              }])
+            }}
           />
         </View>
         <Image

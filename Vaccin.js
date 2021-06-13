@@ -7,13 +7,16 @@ import {
   View,
   Image,
   ScrollView,
+  TouchableOpacity
 } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const Vaccin = props => {
   return (
-    <View style={styles.all}>
+    <TouchableOpacity style={styles.all} onPress={() => {
+      props.onItemPress()
+    }}>
       <View style={styles.viewTitle}>
         <Image source={require('./images/item_information.jpg')} style={styles.imageImage} />
         <View style={{ width: 4 }} />
@@ -28,7 +31,7 @@ const Vaccin = props => {
         {props.message}
       </Text>
       <Text style={styles.textTimeOrArea}>由接种点上报</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
