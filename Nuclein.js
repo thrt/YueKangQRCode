@@ -13,7 +13,7 @@ import {
 import moment from 'moment';
 import LinearGradient from 'react-native-linear-gradient';
 
-const App = props => {
+const Nuclein = props => {
   const colors = {
     '48': ['#b191f5', '#8660db'],
     '72': ['#52dabf', '#08b898'],
@@ -24,7 +24,6 @@ const App = props => {
   const createContainer = () => {
     // 近48小时 和 近72小时
     // 更早的时间
-
     return isReact3Day ? <View style={styles.viewRecent}>
       <Text style={styles.textRecentTime}>{props.duration}</Text>
       <View style={styles.viewRecentRight}>
@@ -37,9 +36,15 @@ const App = props => {
   }
 
   return (
-    <TouchableWithoutFeedback onLongPress={() => {
-      props.onItemLongPress()
-    }} style={styles.all}>
+    <TouchableOpacity
+      style={styles.all}
+      onLongPress={() => {
+        props.onItemLongPress()
+      }}
+      onPress={() => {
+        props.onItemPress()
+      }}
+    >
       <LinearGradient style={styles.viewLinear} colors={colors[props.duration] || ['#ffffff', '#ffffff']}>
         <View style={styles.viewTitle}>
           <Image source={require('./images/item_ok.png')} style={[styles.imageImage, { tintColor: isReact3Day ? 'white' : '#3db36e' }]} />
@@ -54,25 +59,28 @@ const App = props => {
         {createContainer()}
         <Text style={[styles.textTime, { color: isReact3Day ? 'white' : 'grey' }]}>{props.time}</Text>
       </LinearGradient>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   viewLinear: {
-    flex: 1,
     paddingVertical: 12,
-    margin: 2,
-    height: 144,
-    width: Dimensions.get('screen').width / 2 - 24,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: 4,
+    height: 138,
+    width: Dimensions.get('screen').width / 2 - 32,
   },
   all: {
+    height: 144,
+    width: Dimensions.get('screen').width / 2 - 26,
     backgroundColor: 'white',
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4
   },
   viewRecent: {
     flexDirection: 'row',
@@ -92,7 +100,7 @@ const styles = StyleSheet.create({
   textRecentRight: {
     fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '500',
     textAlign: 'justify'
   },
   viewMore: {
@@ -126,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Nuclein;

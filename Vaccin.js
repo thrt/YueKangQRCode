@@ -24,7 +24,7 @@ const Vaccin = props => {
           style={styles.imageMore}
         />
       </View>
-      <Text style={[styles.textMessage, { color: props.fontColor }]}>
+      <Text style={styles.textMessage}>
         {props.message}
       </Text>
       <Text style={styles.textTimeOrArea}>由接种点上报</Text>
@@ -38,7 +38,7 @@ Vaccin.propTypes = {
 const styles = StyleSheet.create({
   all: {
     height: 144,
-    width: Dimensions.get('screen').width / 2 - 24,
+    width: Dimensions.get('screen').width / 2 - 26,
     borderRadius: 4,
     backgroundColor: 'white',
     flexDirection: 'column',
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   textMessage: {
     fontSize: 22,
     fontWeight: '400',
+    color: 'grey'
   },
   textTimeOrArea: {
     fontSize: 16,
