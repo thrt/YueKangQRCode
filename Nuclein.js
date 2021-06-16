@@ -26,6 +26,7 @@ const Nuclein = props => {
     // 更早的时间
     return isReact3Day ? <View style={styles.viewRecent}>
       <Text style={styles.textRecentTime}>{props.duration}</Text>
+      <View style={{width: 2}} />
       <View style={styles.viewRecentRight}>
         <Text style={styles.textRecentRight}>小时</Text>
         <Text style={styles.textRecentRight}>阴性</Text>
@@ -34,7 +35,7 @@ const Nuclein = props => {
       <Text style={styles.textMessage}>阴性</Text>
     </View>
   }
-
+  
   return (
     <TouchableOpacity
       style={styles.all}
@@ -88,17 +89,17 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   textRecentTime: {
-    fontSize: 60,
+    fontSize: 56,
     color: 'white',
   },
   viewRecentRight: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     display: 'flex',
-    height: 52
+    height: 48
   },
   textRecentRight: {
-    fontSize: 22,
+    fontSize: 20,
     color: 'white',
     fontWeight: '500',
     textAlign: 'justify'

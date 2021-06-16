@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     tintColor: 'grey'
   },
   textMessage: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '400',
     color: 'grey'
   },
